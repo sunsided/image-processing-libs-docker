@@ -1,7 +1,7 @@
 # Image Processing Library Builds
 
 Scripts and Dockerfiles to simplify building of image processing libraries
-such as [libdav1d].
+such as [libdav1d], [librav1e] etc.
 
 Multi-stage builds are used to build the library using current
 system settings. Afterwards a `scratch` image is created and
@@ -35,7 +35,7 @@ To produce `sunside/libdav1d:1.1.0-x64`, run:
 ./build-dav1d.sh
 ```
 
-This builds `libdav1d` both as a shared object and static archive.
+This builds `libdav1d` as both a shared object and static archive.
 
 <details>
     <summary>Output</summary>
@@ -86,11 +86,41 @@ This builds `libde265` as a shared object.
  | | |-en265.h
  | | |-de265-version.h
  | | |-de265.h
-
 ```
 
 </details>
 
+## [librav1e] (👉 [librav1e.Dockerfile](librav1e.Dockerfile))
+
+To produce `sunside/librav1e:0.6.3-x64`, run:
+
+```shell
+./build-rav1e.sh
+```
+
+This builds `librav1e` as both a shared object and a static archive.
+
+<details>
+    <summary>Output</summary>
+
+```
+.
+ |-lib
+ | |-librav1e.a
+ | |-librav1e.so
+ | |-librav1e.so.0.6.3
+ | |-pkgconfig
+ | | |-rav1e.pc
+ | |-librav1e.so.0
+ |-base-image
+ |-include
+ | |-rav1e
+ | | |-rav1e.h
+ |-LICENSE
+```
+
+</details>
 
 [libdav1d]: https://code.videolan.org/videolan/dav1d
 [libde265]: https://github.com/strukturag/libde265
+[librav1e]: https://github.com/xiph/rav1e
