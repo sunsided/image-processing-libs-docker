@@ -29,7 +29,7 @@ DOCKER_REGISTRY=sunside/
 
 ## [libdav1d] (👉 [libdav1d.Dockerfile](libdav1d.Dockerfile))
 
-To produce `sunside/libdav1d:1.1.0-x64`, run:
+To produce `sunside/libdav1d:1.1.0-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libdav1d)), run:
 
 ```shell
 ./build-dav1d.sh
@@ -57,7 +57,7 @@ This builds `libdav1d` as both a shared object and static archive.
 
 ## [libde265] (👉 [libde265.Dockerfile](libde265.Dockerfile))
 
-To produce `sunside/libde265:1.0.11-x64`, run:
+To produce `sunside/libde265:1.0.11-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libde265)), run:
 
 ```shell
 ./build-de265.sh
@@ -92,7 +92,7 @@ This builds `libde265` as a shared object.
 
 ## [librav1e] (👉 [librav1e.Dockerfile](librav1e.Dockerfile))
 
-To produce `sunside/librav1e:0.6.3-x64`, run:
+To produce `sunside/librav1e:0.6.3-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/librav1e)), run:
 
 ```shell
 ./build-rav1e.sh
