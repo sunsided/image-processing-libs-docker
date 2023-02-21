@@ -1,5 +1,6 @@
 ARG version=1.1.0
 ARG base=debian:bullseye
+ARG revision=0
 
 # Build libdav1d.
 FROM $base as builder
@@ -28,3 +29,16 @@ FROM scratch
 COPY --from=builder /dav1d/base-image .
 COPY --from=builder /dav1d/src/COPYING .
 COPY --from=builder /dav1d/lib lib
+
+ARG version
+ARG base
+ARG date
+ARG base
+
+LABEL org.opencontainers.artifact.title="libdav1d $version"
+LABEL org.opencontainers.artifact.description="libdav1d $version built from $base"
+LABEL org.opencontainers.artifact.created="$date"
+LABEL org.opencontainers.image.version="$version"
+LABEL org.opencontainers.image.authors="Markus Mayer <sunsided@users.noreply.github.com>"
+LABEL org.opencontainers.image.source="https://github.com/sunsided/imgproc-libs-docker"
+LABEL org.opencontainers.image.created="$date"
