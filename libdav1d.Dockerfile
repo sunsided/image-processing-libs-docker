@@ -1,6 +1,5 @@
 ARG version=1.1.0
 ARG base=debian:bullseye
-ARG revision=0
 
 # Build libdav1d.
 FROM $base as builder
@@ -15,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN pip3 install meson
 
 ARG version
-RUN git clone  --recursive --branch "$version" --depth 1 https://code.videolan.org/videolan/dav1d.git /dav1d/src
+RUN git clone --recursive --branch "$version" --depth 1 https://code.videolan.org/videolan/dav1d.git /dav1d/src
 
 WORKDIR /dav1d/src/build
 RUN meson setup --buildtype=release --strip --prefix=/dav1d --libdir=lib --default-library=both ..

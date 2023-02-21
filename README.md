@@ -27,7 +27,7 @@ BASE_IMAGE=debian:bullseye
 DOCKER_REGISTRY=sunside/
 ```
 
-## [libdav1d] (👉 [dav1d.Dockerfile](dav1d.Dockerfile))
+## [libdav1d] (👉 [libdav1d.Dockerfile](libdav1d.Dockerfile))
 
 To produce `sunside/libdav1d:1.1.0-x64`, run:
 
@@ -41,6 +41,7 @@ This builds `libdav1d` both as a shared object and static archive.
     <summary>Output</summary>
 
 ```
+.
  |-lib
  | |-libdav1d.so
  | |-libdav1d.so.6
@@ -54,5 +55,42 @@ This builds `libdav1d` both as a shared object and static archive.
 
 </details>
 
+## [libde265] (👉 [libde265.Dockerfile](libde265.Dockerfile))
+
+To produce `sunside/libde265:1.0.11-x64`, run:
+
+```shell
+./build-de265.sh
+```
+
+This builds `libde265` as a shared object.
+
+<details>
+    <summary>Output</summary>
+
+```
+.
+ |-lib
+ | |-cmake
+ | | |-libde265
+ | | | |-libde265Config-release.cmake
+ | | | |-libde265ConfigVersion.cmake
+ | | | |-libde265Config.cmake
+ | |-pkgconfig
+ | | |-libde265.pc
+ | |-libde265.so
+ |-base-image
+ |-COPYING
+ |-include
+ | |-libde265
+ | | |-en265.h
+ | | |-de265-version.h
+ | | |-de265.h
+
+```
+
+</details>
+
 
 [libdav1d]: https://code.videolan.org/videolan/dav1d
+[libde265]: https://github.com/strukturag/libde265
