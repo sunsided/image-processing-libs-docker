@@ -1,7 +1,7 @@
 # Image Processing Library Builds
 
 Scripts and Dockerfiles to simplify building of image processing libraries
-such as [libdav1d], [librav1e] etc.
+such as [libheif], [libdav1d], [librav1e] etc.
 
 Multi-stage builds are used to build the library using current
 system settings. Afterwards a `scratch` image is created and
@@ -43,14 +43,26 @@ This builds `libdav1d` as both a shared object and static archive.
 ```
 .
  |-lib
- | |-libdav1d.so
- | |-libdav1d.so.6
- | |-libdav1d.so.6.8.0
- | |-libdav1d.a
- | |-pkgconfig
- | | |-dav1d.pc
+ | |-x86_64-linux-gnu
+ | | |-libdav1d.so
+ | | |-libdav1d.so.6
+ | | |-libdav1d.so.6.8.0
+ | | |-libdav1d.a
+ | | |-pkgconfig
+ | | | |-dav1d.pc
  |-base-image
  |-COPYING
+ |-include
+ | |-dav1d
+ | | |-data.h
+ | | |-picture.h
+ | | |-common.h
+ | | |-headers.h
+ | | |-version.h
+ | | |-meson.build
+ | | |-dav1d.h
+ | | |-version.h.in
+
 ```
 
 </details>
@@ -121,6 +133,54 @@ This builds `librav1e` as both a shared object and a static archive.
 
 </details>
 
+
+## [libheif] (👉 [libheif.Dockerfile](libheif.Dockerfile))
+
+This build depends on `libde265`, `librav1e` and `libdav1d` built above.
+See [build-heif.sh](build-heif.sh) for the specific versions.
+
+To produce `sunside/libheif:1.1.0-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libheif)), run:
+
+```shell
+./build-heif.sh
+```
+
+This builds `libheif` as a shared object.
+
+<details>
+    <summary>Output</summary>
+
+```
+.
+ |-lib
+ | |-libheif.so.1
+ | |-cmake
+ | | |-libheif
+ | | | |-libheif-config-release.cmake
+ | | | |-libheif-config.cmake
+ | | | |-libheif-config-version.cmake
+ | |-libheif.so.1.15.1
+ | |-libheif.so
+ | |-libheif
+ | | |-libheif-rav1e.so
+ | |-pkgconfig
+ | | |-libheif.pc
+ |-share
+ | |-thumbnailers
+ | | |-heif.thumbnailer
+ |-base-image
+ |-COPYING
+ |-include
+ | |-libheif
+ | | |-heif.h
+ | | |-heif_version.h
+ | | |-heif_cxx.h
+ | | |-heif_plugin.h
+```
+
+</details>
+
 [libdav1d]: https://code.videolan.org/videolan/dav1d
 [libde265]: https://github.com/strukturag/libde265
+[libheif]: https://github.com/strukturag/libheif
 [librav1e]: https://github.com/xiph/rav1e

@@ -17,8 +17,12 @@ ARG version
 RUN git clone --recursive --branch "$version" --depth 1 https://code.videolan.org/videolan/dav1d.git /dav1d/src
 
 WORKDIR /dav1d/src/build
-RUN meson setup --buildtype=release --strip --prefix=/dav1d --libdir=lib --default-library=both ..
+RUN meson setup --buildtype=release --strip --prefix=/dav1d --default-library=both -Denable_tools=false -Denable_examples=false -Denable_tests=false ..
 RUN ninja && ninja install
+
+# Headers are not automatically dispatched.
+RUN mkdir -p /dav1d/include/dav1d
+RUN cp -r /dav1d/src/include/dav1d /dav1d/include/
 
 # Keep track of the build image.
 RUN echo "$base" > /dav1d/base-image
@@ -28,6 +32,7 @@ FROM scratch
 COPY --from=builder /dav1d/base-image .
 COPY --from=builder /dav1d/src/COPYING .
 COPY --from=builder /dav1d/lib lib
+COPY --from=builder /dav1d/include include
 
 ARG version
 ARG base
