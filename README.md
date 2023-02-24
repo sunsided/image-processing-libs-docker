@@ -41,7 +41,59 @@ Two helper scripts exist:
 
 # Libraries
 
+## [libheif] (👉 [libheif.Dockerfile](build/libheif.Dockerfile))
+
+> libheif is an ISO/IEC 23008-12:2017 HEIF and AVIF (AV1 Image File Format) file format decoder and encoder.
+>
+> HEIF and AVIF are new image file formats employing HEVC (h.265) or AV1 image coding, respectively, for the best compression ratios currently possible.
+
+This build depends on `libde265`, `librav1e` and `libdav1d` built with the scripts below.
+See [build-heif.sh](build-heif.sh) for the specific versions used.
+
+To produce `sunside/libheif:1.1.0-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libheif)), run:
+
+```shell
+./build-heif.sh
+```
+
+This builds `libheif` as a shared object.
+
+<details>
+    <summary>Output</summary>
+
+```
+.
+ |-lib
+ | |-libheif.so.1
+ | |-cmake
+ | | |-libheif
+ | | | |-libheif-config-release.cmake
+ | | | |-libheif-config.cmake
+ | | | |-libheif-config-version.cmake
+ | |-libheif.so.1.15.1
+ | |-libheif.so
+ | |-libheif
+ | | |-libheif-rav1e.so
+ | |-pkgconfig
+ | | |-libheif.pc
+ |-share
+ | |-thumbnailers
+ | | |-heif.thumbnailer
+ |-base-image
+ |-COPYING
+ |-include
+ | |-libheif
+ | | |-heif.h
+ | | |-heif_version.h
+ | | |-heif_cxx.h
+ | | |-heif_plugin.h
+```
+
+</details>
+
 ## [libdav1d] (👉 [libdav1d.Dockerfile](build/libdav1d.Dockerfile))
+
+> **dav1d** is an **AV1** cross-platform **d**ecoder, open-source, and focused on speed and correctness.
 
 To produce `sunside/libdav1d:1.1.0-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libdav1d)), run:
 
@@ -83,6 +135,8 @@ This builds `libdav1d` as both a shared object and static archive.
 
 ## [libde265] (👉 [libde265.Dockerfile](build/libde265.Dockerfile))
 
+> libde265 is an open source implementation of the h.265 video codec.
+
 To produce `sunside/libde265:1.0.11-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libde265)), run:
 
 ```shell
@@ -118,6 +172,8 @@ This builds `libde265` as a shared object.
 
 ## [librav1e] (👉 [librav1e.Dockerfile](build/librav1e.Dockerfile))
 
+> The fastest and safest AV1 encoder.
+
 To produce `sunside/librav1e:0.6.3-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/librav1e)), run:
 
 ```shell
@@ -143,53 +199,6 @@ This builds `librav1e` as both a shared object and a static archive.
  | |-rav1e
  | | |-rav1e.h
  |-LICENSE
-```
-
-</details>
-
-
-## [libheif] (👉 [libheif.Dockerfile](build/libheif.Dockerfile))
-
-This build depends on `libde265`, `librav1e` and `libdav1d` built above.
-See [build-heif.sh](build-heif.sh) for the specific versions.
-
-To produce `sunside/libheif:1.1.0-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libheif)), run:
-
-```shell
-./build-heif.sh
-```
-
-This builds `libheif` as a shared object.
-
-<details>
-    <summary>Output</summary>
-
-```
-.
- |-lib
- | |-libheif.so.1
- | |-cmake
- | | |-libheif
- | | | |-libheif-config-release.cmake
- | | | |-libheif-config.cmake
- | | | |-libheif-config-version.cmake
- | |-libheif.so.1.15.1
- | |-libheif.so
- | |-libheif
- | | |-libheif-rav1e.so
- | |-pkgconfig
- | | |-libheif.pc
- |-share
- | |-thumbnailers
- | | |-heif.thumbnailer
- |-base-image
- |-COPYING
- |-include
- | |-libheif
- | | |-heif.h
- | | |-heif_version.h
- | | |-heif_cxx.h
- | | |-heif_plugin.h
 ```
 
 </details>
