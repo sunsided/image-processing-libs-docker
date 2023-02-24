@@ -27,6 +27,20 @@ BASE_IMAGE=debian:bullseye
 DOCKER_REGISTRY=sunside/
 ```
 
+## Helper scripts
+
+Two helper scripts exist:
+
+- `list-image-contents.sh` lists the contents of the created scratch image
+- `extract-image-contents.sh` extracts the files from the scratch image and bundles it up in a `.tar.gz` file.
+
+```shell
+./list-image-contents.sh sunside/libdav1d:1.1.0-x64
+./extract-image-contents.sh sunside/libdav1d:1.1.0-x64
+```
+
+# Libraries
+
 ## [libdav1d] (👉 [libdav1d.Dockerfile](libdav1d.Dockerfile))
 
 To produce `sunside/libdav1d:1.1.0-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libdav1d)), run:
