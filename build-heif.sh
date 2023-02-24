@@ -20,7 +20,7 @@ docker build --tag $TAG \
     --build-arg base=$BASE_IMAGE \
     --build-arg date=$BUILD_DATE \
     --build-arg version=$VERSION \
-    -f $DOCKERFILE .
+    -f build/$DOCKERFILE .
 
 ./list-image-contents.sh $TAG
 ./extract-image-contents.sh $TAG

@@ -27,7 +27,7 @@ RUN cp -r /dav1d/src/include/dav1d /dav1d/include/
 # Keep track of the build image.
 RUN echo "$base" > /dav1d/base-image
 
-# Assemble results.
+# Assemble results.build/
 FROM scratch
 COPY --from=builder /dav1d/base-image .
 COPY --from=builder /dav1d/src/COPYING .

@@ -41,7 +41,7 @@ Two helper scripts exist:
 
 # Libraries
 
-## [libdav1d] (👉 [libdav1d.Dockerfile](libdav1d.Dockerfile))
+## [libdav1d] (👉 [libdav1d.Dockerfile](build/libdav1d.Dockerfile))
 
 To produce `sunside/libdav1d:1.1.0-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libdav1d)), run:
 
@@ -81,7 +81,7 @@ This builds `libdav1d` as both a shared object and static archive.
 
 </details>
 
-## [libde265] (👉 [libde265.Dockerfile](libde265.Dockerfile))
+## [libde265] (👉 [libde265.Dockerfile](build/libde265.Dockerfile))
 
 To produce `sunside/libde265:1.0.11-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/libde265)), run:
 
@@ -116,7 +116,7 @@ This builds `libde265` as a shared object.
 
 </details>
 
-## [librav1e] (👉 [librav1e.Dockerfile](librav1e.Dockerfile))
+## [librav1e] (👉 [librav1e.Dockerfile](build/librav1e.Dockerfile))
 
 To produce `sunside/librav1e:0.6.3-x64` ([Docker Hub](https://hub.docker.com/repository/docker/sunside/librav1e)), run:
 
@@ -148,7 +148,7 @@ This builds `librav1e` as both a shared object and a static archive.
 </details>
 
 
-## [libheif] (👉 [libheif.Dockerfile](libheif.Dockerfile))
+## [libheif] (👉 [libheif.Dockerfile](build/libheif.Dockerfile))
 
 This build depends on `libde265`, `librav1e` and `libdav1d` built above.
 See [build-heif.sh](build-heif.sh) for the specific versions.
