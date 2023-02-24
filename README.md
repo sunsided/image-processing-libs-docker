@@ -3,41 +3,37 @@
 Scripts and Dockerfiles to simplify building of image processing libraries
 such as [libheif], [libdav1d], [librav1e] etc.
 
-Multi-stage builds are used to build the library using current
-system settings. Afterwards a `scratch` image is created and
-the build artifacts are copied to it.
+Multi-stage Docker builds are used to build the library for the current hardware. 
+Builds are currently targeting `debian:bullseye`.
 
-Builds are currently based on `debian:bullseye`.
+After compiling, an empty Docker image is created `FROM scratch` and the build
+artifacts are copied to it in order to allow easy
+access in other docker builds:
 
-## Using the prebuilt libraries
-
-To use a prebuilt library, use a `COPY --from=image` step in
-your docker build, e.g. like so:
-
-```docker
-COPY --from=sunside/libdav1d:1.1.0-x64 /lib/ /usr/lib/x86_64-linux-gnu/
+```dockerfile
+FROM debian:bullseye as builder
+COPY --from=sunside/libdav1d:1.1.0-x64 /dav1d/lib/ /usr/local/lib/
+RUN ldconfig
 ```
 
-The `.env` file contains configuration for all build scripts.
+Please consult the detail sections below for the directory layout of each image.
+
+## Building locally
+
+The [`.env`] file contains configuration shared by all build scripts.
 If you need to rebuild the libraries under different conditions,
 make sure to adjust this file to your needs:
 
 ```bash
 BASE_IMAGE=debian:bullseye
 DOCKER_REGISTRY=sunside/
+# etc.
 ```
-
-## Helper scripts
 
 Two helper scripts exist:
 
 - [`list-image-contents.sh`] lists the contents of the created scratch image
 - [`extract-image-contents.sh`] extracts the files from the scratch image and bundles it up in a `.tar.gz` file.
-
-```shell
-./list-image-contents.sh sunside/libdav1d:1.1.0-x64
-./extract-image-contents.sh sunside/libdav1d:1.1.0-x64
-```
 
 # Libraries
 
@@ -208,5 +204,6 @@ This builds `librav1e` as both a shared object and a static archive.
 [libheif]: https://github.com/strukturag/libheif
 [librav1e]: https://github.com/xiph/rav1e
 
+[`.env`]: .env
 [`list-image-contents.sh`]: list-image-contents.sh
 [`extract-image-contents.sh`]: extract-image-contents.sh
