@@ -31,8 +31,8 @@ DOCKER_REGISTRY=sunside/
 
 Two helper scripts exist:
 
-- `list-image-contents.sh` lists the contents of the created scratch image
-- `extract-image-contents.sh` extracts the files from the scratch image and bundles it up in a `.tar.gz` file.
+- [`list-image-contents.sh`] lists the contents of the created scratch image
+- [`extract-image-contents.sh`] extracts the files from the scratch image and bundles it up in a `.tar.gz` file.
 
 ```shell
 ./list-image-contents.sh sunside/libdav1d:1.1.0-x64
@@ -198,3 +198,6 @@ This builds `libheif` as a shared object.
 [libde265]: https://github.com/strukturag/libde265
 [libheif]: https://github.com/strukturag/libheif
 [librav1e]: https://github.com/xiph/rav1e
+
+[`list-image-contents.sh`]: list-image-contents.sh
+[`extract-image-contents.sh`]: extract-image-contents.sh

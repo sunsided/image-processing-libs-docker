@@ -1,3 +1,5 @@
+# This Dockerfile builds a throwaway image to list the contents
+# of the source image specified by the `lib` build argument.
 ARG lib=scratch
 ARG base=debian:bullseye
 
